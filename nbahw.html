@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>Athlete Search</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+
+
+</head>
+
+<body>
+
+	<div id="buttonsView"></div>
+
+	<header>Player Search</header>
+
+	<label for="animal-input">Add a Sports Athlete</label>
+    
+    <input id="animal-input" type="text" ><br>
+
+     <input id="addAnimals" type="submit" value="Add an Player">
+
+     <div class="giphy"></div>
+  </form>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- // ===================Javascript===================================== -->
+<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	var animals = ['Kobe Bryant', 'Michael Jordan', 'Tim Duncan','Eli Manning','Tom Brady','Derek Jeter'];
+	
+	
+		function displayAnimalGiphy(){
+			$('.giphy').empty();
+			var animalClicked = $(this).html();
+			var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animalClicked + "&api_key=dc6zaTOxFJmzC&limit=10";
+			console.log("working");
+			$.ajax({url: queryURL, method: 'GET'}).done(function(response) {
+				var data = response.data;
+				console.log(response.data);
+				for (var i = 0; i < data.length; i++) {
+					console.log(data[i])
+					var imagesDiv = $('<img>');
+					// var rating = response.data[i].rating;
+					// var h3 = $('<>').text("Rating:" + rating)
+					// imagesDiv.append(h3)
+					imagesDiv.attr("src", data[i].images.original.url)
+				     console.log(data[i].rating);
+				     // $('.giphy').append(rating)
+				     $('.giphy').append(imagesDiv);
+				}                
+				// var regular = response.data[i].images.original.url;
+				// // var still = respons.data[i].images.original_still.url;
+				
+				
+			})
+
+		}
+		
+		function showButton(){
+			$('#buttonsView').empty();
+			for (var i = 0; i < animals.length; i++) {
+				console.log("my animals" + animals[i]);
+				var $newButton = $('<button>');
+				$newButton.addClass('animals');  
+		    	$newButton.attr('data-name', animals[i]); 
+		    	$newButton.text(animals[i]);
+				$('#buttonsView').append($newButton);
+
+
+
+			};
+
+		};
+		
+	
+	
+	$('#addAnimals').on('click', function(search){
+		console.log("animal adding works");
+		var animal = $('#animal-input').val().trim();
+		animals.push(animal);
+		showButton();
+		$('#animal-input').val("");
+
+		return false;
+
+	})
+
+	showButton();
+	$(document).on('click', '.animals', displayAnimalGiphy);
+
+
+
+
+});
+
+
+
+</script>
+
+</body>
+
+
+
+</html>
