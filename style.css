@@ -1,14 +1,14 @@
 body{
 	background-color: black;
+	align-items: center;
 
 }
 
 img{
-	width: 400px;
-	height: 400px;
-	margin: 20px 10px 20px 10px;
-	border:solid white; 
-	display: inline-block;
+	width:350px;
+	height: 350px;
+	margin: 0 10px 20px 10px;
+	border:solid white;
 }
 
 header{
@@ -16,13 +16,17 @@ header{
 	color: white;
 }
 
-h3{
+h3, label{
 	color: white;
 }
 
-label{
-	color: white;
-}
+.both{
+	width: 400px;
+	display: inline-block;
+	margin: auto
+} 
+
+
 
 .animals, #addAnimals{
 	color: white;
@@ -31,4 +35,7 @@ label{
 	background-color: #008CBA;
 	margin: 10px 10px 10px 10px;
 }
+
+
+
 

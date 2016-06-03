@@ -23,15 +23,14 @@
 
 	<header>Player Search</header>
 
-	<label for="animal-input">Add a Sports Athlete</label>
+	<label for="animal-input">Type a Sports Athlete</label>
     
     <input id="animal-input" type="text" ><br>
 
      <input id="addAnimals" type="submit" value="Add an Player">
 
      <div class="giphy"></div>
-  </form>
-    
+  
 
 
 
@@ -58,21 +57,26 @@ $(document).ready(function(){
 			$('.giphy').empty();
 			var animalClicked = $(this).html();
 			var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animalClicked + "&api_key=dc6zaTOxFJmzC&limit=10";
-			console.log("working");
+			// console.log("working");
 			$.ajax({url: queryURL, method: 'GET'}).done(function(response) {
 				var data = response.data;
 				console.log(response.data);
 				for (var i = 0; i < data.length; i++) {
 					console.log(data[i])
-					var imagesDiv = $('<img>');
-					// var rating = response.data[i].rating;
-					// var h3 = $('<>').text("Rating:" + rating)
-					// imagesDiv.append(h3)
-					imagesDiv.attr("src", data[i].images.original.url)
+					var $both = $('<div class="both">')
+					var images = $('<img>');
+					images.attr("src", data[i].images.original.url);
 				     console.log(data[i].rating);
-				     // $('.giphy').append(rating)
-				     $('.giphy').append(imagesDiv);
-				}                
+				     
+				     
+
+				    var rating = response.data[i].rating;
+					var h3 = $('<h3>').text("Rating: " + rating)
+					$both.append(h3);
+					$both.append(images);
+					$('.giphy').append($both)
+				} 
+
 				// var regular = response.data[i].images.original.url;
 				// // var still = respons.data[i].images.original_still.url;
 				
@@ -80,6 +84,15 @@ $(document).ready(function(){
 			})
 
 		}
+		
+		// $(function(){
+		// 	$('<img>').on('click', function pause(){
+		// 		console.log("clicked pause")
+			
+
+		// })
+		
+
 		
 		function showButton(){
 			$('#buttonsView').empty();
