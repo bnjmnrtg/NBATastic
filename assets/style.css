@@ -1,0 +1,41 @@
+body{
+	background-color: black;
+	align-items: center;
+
+}
+
+img{
+	width:350px;
+	height: 350px;
+	margin: 0 10px 20px 10px;
+	border:solid white;
+}
+
+header{
+	font-size: 40px;
+	color: white;
+}
+
+h3, label{
+	color: white;
+}
+
+.both{
+	width: 400px;
+	display: inline-block;
+	margin: auto
+} 
+
+
+
+.animals, #addAnimals{
+	color: white;
+	border-radius: 12px;
+	font-size: 20px;
+	background-color: #008CBA;
+	margin: 10px 10px 10px 10px;
+}
+
+
+
+
